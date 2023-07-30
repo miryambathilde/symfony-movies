@@ -48,9 +48,15 @@
                     <i class="fas fa-edit"></i> Edit
                 </a>
                 <a href="{{ path('app_movie', {'id': movie.id}) }}"
-                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r">
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4">
                     <i class="fas fa-eye"></i> View
                 </a>
+
+                <a href="{{ path('app_movie_delete', {'id': movie.id}) }}"
+                   class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-r">
+                    <i class="fas fa-trash"></i> Delete
+                </a>
+
             </div>
         </div>
         {% endfor %}
