@@ -14,12 +14,26 @@ class MoviesController extends AbstractController
     {
     }
 
+    // GET ALL MOVIES
     #[Route('/movies', name: 'app_movies', methods: ['GET', 'HEAD'])]
     public function index(): Response
     {
         $movies = $this->entityManager->getRepository(Movie::class)->findAll();
         return $this->render('movies/index.html.twig', [
             'movies' => $movies,
+        ]);
+    }
+
+    // GET ONE MOVIE BY THEIR ID
+    #[Route('/movies/{id}', name: 'app_movie', methods: ['GET', 'HEAD'])]
+    public function show(int $id): Response
+    {
+        $movie = $this->entityManager->getRepository(Movie::class)->find($id);
+        if (!$movie) {
+            throw $this->createNotFoundException('Movie not found' . $id);
+        }
+        return $this->render('movies/show.html.twig', [
+            'movie' => $movie,
         ]);
     }
 }
